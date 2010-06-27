@@ -10,8 +10,8 @@ h3. General
  * No singletons, no registries, multiple @Front Controllers@ (P of EAA 344) should live easily together
  * Basic structure fully defined in interfaces
  * Clear separation of packages
-   * @EPHPMVC\Standard@ is where the most simple example implementations live
-   * HTTP protocol specific implementations live in @EPHPMVC\HTTP@
+   ** @EPHPMVC\Standard@ is where the most simple example implementations live
+   ** HTTP protocol specific implementations live in @EPHPMVC\HTTP@
 
 h3. Dispatching/Routing
  * Protocol agnostic: should be usable for Web, Mail processing, CLI utilities

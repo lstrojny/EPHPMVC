@@ -16,9 +16,11 @@ use EPHPMVC\Standard\FrontController as StandardFrontController,
 
 $router = new StandardFifoRouter();
 $router->addRoute(new HttpStaticPathRoute('/hello-world', 'HelloWorld'));
+$router->addRoute(new HttpStaticPathRoute('/start', 'StartGreeting'));
 $dispatcher = new StandardDispatcher();
 $request = new HttpRequest(
-    '/hello-world',
+    #'/hello-world',
+    '/start',
     array('get' => 'GET VALUE'),
     array('post' => 'POST VALUE'),
     array('session' => 'SESSION'),
@@ -26,6 +28,7 @@ $request = new HttpRequest(
 );
 $response = new HttpResponse(HttpResponse::VERSION_11);
 $view = new StandardView();
+/** View helpers are just registered as template vars thanks to closures */
 $view->pass('e', function($str) {
     return htmlentities($str, ENT_COMPAT, 'UTF-8');
 });

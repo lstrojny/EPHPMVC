@@ -10,23 +10,25 @@ use EPHPMVC\Standard\FrontController as StandardFrontController,
     EPHPMVC\Standard\FifoRouter as StandardFifoRouter,
     EPHPMVC\Standard\Dispatcher as StandardDispatcher,
     EPHPMVC\Standard\View as StandardView,
-    EPHPMVC\Http\StaticPathRoute as HttpStaticPathRoute,
-    EPHPMVC\Http\Request as HttpRequest,
-    EPHPMVC\Http\Response as HttpResponse;
+    EPHPMVC\HTTP\StaticPathRoute as HTTPStaticPathRoute,
+    EPHPMVC\HTTP\Request as HTTPRequest,
+    EPHPMVC\HTTP\Response as HTTPResponse;
 
 $router = new StandardFifoRouter();
-$router->addRoute(new HttpStaticPathRoute('/hello-world', 'HelloWorld'));
-$router->addRoute(new HttpStaticPathRoute('/start', 'StartGreeting'));
+$router->addRoute(new HTTPStaticPathRoute('/hello-world', 'HelloWorld'));
+$router->addRoute(new HTTPStaticPathRoute('/start', 'StartGreeting'));
 $dispatcher = new StandardDispatcher();
-$request = new HttpRequest(
-    #'/hello-world',
-    '/start',
-    array('get' => 'GET VALUE'),
-    array('post' => 'POST VALUE'),
-    array('session' => 'SESSION'),
-    array('cookie' => 'COOKIE')
+$request = new HTTPRequest(
+    array(
+        'GET'     => array('getKey' => 'GET VALUE'),
+        'POST'    => array('postKey' => 'POST VALUE'),
+        'SESSION' => array('sessionKey' => 'SESSION VALUE'),
+        'COOKIE'  => array('cookieKey' => 'COOKIE VALUE'),
+    ),
+    'http://host.com/hello-world'
+    #'http://foo.com/start'
 );
-$response = new HttpResponse(HttpResponse::VERSION_11);
+$response = new HTTPResponse(HTTPResponse::VERSION_11);
 $view = new StandardView();
 /** View helpers are just registered as template vars thanks to closures */
 $view->pass('e', function($str) {

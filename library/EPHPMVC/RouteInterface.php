@@ -1,17 +1,68 @@
 <?php
+/**
+ * EPHPMVC - A simple, yet extendable MVC implementation for PHP 5.3
+ *
+ * Copyright (c) 2010, Lars Strojny <lars@strojny.net>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   * Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in
+ *     the documentation and/or other materials provided with the
+ *     distribution.
+ *
+ *   * Neither the name of Lars Strojny nor the names of his
+ *     contributors may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @package EPHPMVC
+ * @version @@package_version@@
+ */
 namespace EPHPMVC;
 
 /**
- * Route interface is dense. Takes a request and returns a boolean if the current route matches against the current
- * request. It's possible to implement REST routing with this model, as well as all kind of protocol specific routing
- * for let's say an incoming mail via STDIN or an XML document or whatever. The route itself is responsible for
- * instantiating the action controller. We could delegate action controller creation to a Dependency Injection
- * controller here if we wish to. We could also have mixed setups where simple routes like /imprint or
- * /terms-of-services are implemented with a really fast route and the interesting domain stuff is done with the more
- * sophisticated route with dependency injection and all of that.
- */
+ * Route interface
+ *
+ * Route decides which controller action should be used. The route is responsible
+ * for matching against the current request. If the request returns true, the
+ * method to create the action controller is called.
+ *
+ * @package EPHPMVC
+ * @version @@package_version@@
+*/
 interface RouteInterface
 {
+    /**
+     * Returns true if the route matches the passed request object
+     *
+     * @param EPHPMVC\RequestInterface $request
+     * @return true
+     */
     public function matches(RequestInterface $request);
+
+    /**
+     * Returns the specific action controller
+     *
+     * @return EPHPMVC\ActionController
+     */
     public function createActionController();
 }

@@ -30,6 +30,7 @@ $request = new HTTPRequest(
 );
 $response = new HTTPResponse(HTTPResponse::VERSION_11);
 $view = new StandardView();
+$view->setTemplate('error.php');
 /** View helpers are just registered as template vars thanks to closures */
 $view->pass('e', function($str) {
     return htmlentities($str, ENT_COMPAT, 'UTF-8');

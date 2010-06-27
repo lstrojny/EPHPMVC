@@ -5,13 +5,13 @@ h2. Design Goals
 h3. General
  * Component should scale: from small web app to huge complex web projects
  * Configuration over convention but sensible defaults
- * Should be extendible with classic OOP measures: e.g. Composites (GOF 163) could be used for complex views and complex routes
+ * Should be extendible with classic OOP measures: e.g. @Composites@ (GOF 163) could be used for complex views and complex routes
  * Constructor based dependency injection for all the classes
- * No singletons, no registries, multiple front controllers should live easily together
+ * No singletons, no registries, multiple @Front Controllers@ (P of EAA 344) should live easily together
  * Basic structure fully defined in interfaces
  * Clear separation of packages
-   * EPHPMVC\Standard is where the most simple example implementations live
-   * HTTP protocol specific implementations live in EPHPMVC\HTTP
+   * @EPHPMVC\Standard@ is where the most simple example implementations live
+   * HTTP protocol specific implementations live in @EPHPMVC\HTTP@
 
 h3. Dispatching/Routing
  * Protocol agnostic: should be usable for Web, Mail processing, CLI utilities
@@ -24,5 +24,5 @@ h3. View
 h2. Ideas
  * Implement an A/B split testing route
  * Implement a CLI request/response/route triangle
- * Implement XML processing requesT/response/route triangle. Routing expressions specified as XPath Queries
- * Implement router to use Page Controller (P of EAA 333) pattern
+ * Implement XML processing request/response/route triangle. Routing expressions specified as XPath Queries
+ * Implement router to use @Page Controller@ (P of EAA 333) pattern

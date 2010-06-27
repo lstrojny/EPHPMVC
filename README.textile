@@ -1,0 +1,7 @@
+h1. EPHPMVC: A small but extendable MVC implementation for PHP 5.3
+
+h2. Design Goals
+ * Protocol agnostic: should be usable for Web, Mail processing, CLI utilities
+ * Component should scale: from small web app to huge complex web projects
+ * Configuration over convention but sensible defaults
+ * Should be extendible with classic OOP measures: e.g. Composites could be used for layouts and mixed routes
